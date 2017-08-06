@@ -119,7 +119,7 @@ public:
             for (int ii=0; ii<m; ii++)
                 relation_vec[i][ii] = randn(0,1.0/m,-1,1);
         }
-        FILE* f1 = fopen("../data/entity2vec.bern","r");
+        FILE* f1 = fopen((path+"/entity2vec."+version).c_str(),"r");
         for (int i=0; i<entity_num; i++)
         {
             for (int ii=0; ii<n; ii++)
@@ -128,7 +128,7 @@ public:
         }
         fclose(f1);
 
-		FILE* f2 = fopen("../data/relation2vec.bern","r");
+		FILE* f2 = fopen((path+"/entity2vec."+version).c_str(),"r");
         for (int i=0; i<relation_num; i++)
         {
             for (int ii=0; ii<n; ii++)
