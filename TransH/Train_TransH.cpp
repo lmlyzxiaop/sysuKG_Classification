@@ -60,8 +60,8 @@ map<int,map<int,int > > left_candidate_ok,right_candidate_ok;
 map<int,vector<int> > left_candidate,right_candidate;
 map<int,int> entity2num;
 
-string data = "WN11";
-string path = ("../"+data).c_str();
+string data;
+string path;
 
 class Train{
 
@@ -437,6 +437,7 @@ int main(int argc,char**argv)
     int n = 100;
     double rate = 0.001;
     double margin = 2;
+    int data_flag = 1;
     int i;
     if ((i = ArgPos((char *)"-size", argc, argv)) > 0) n = atoi(argv[i + 1]);
     if ((i = ArgPos((char *)"-margin", argc, argv)) > 0) margin = atoi(argv[i + 1]);
@@ -449,6 +450,13 @@ int main(int argc,char**argv)
     else
         version = "unif";
     cout<<"method = "<<version<<endl;
+   if(data_flag)
+        data = "WN11";
+    else 
+        data = "FB13";
+    cout<<"DataSet = "<<data<<endl;
+    path = ("../"+data).c_str();
+    cout<<"path = "<<path<<endl;
     prepare();
     train.run(n,rate,margin,method);
 }
