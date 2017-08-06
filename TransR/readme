@@ -1,0 +1,3 @@
+the data set are FB13 and WN11 
+the classification method  in the folder test
+you should run the Train_TransR.cpp then in folder test run the .py file
