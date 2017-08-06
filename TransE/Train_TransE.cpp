@@ -59,7 +59,8 @@ map<int,string> id2entity,id2relation;
 map<int,map<int,int> > left_entity,right_entity;
 map<int,double> left_num,right_num;
 
-string path = "../WN11";
+string data = "WN11"
+string path = ("../"+data).c_str();
 
 class Train{
 
