@@ -183,8 +183,8 @@ private:
                 sprintf(tmp,"%d",epoch);
                 string s_epoch(tmp);
                 //the file name changed
-                FILE* f2 = fopen(("relation2vec."+version).c_str(),"w");
-                FILE* f3 = fopen(("entity2vec."+version).c_str(),"w");
+                FILE* f2 = fopen((data+"/relation2vec."+version).c_str(),"w");
+                FILE* f3 = fopen((data+"/entity2vec."+version).c_str(),"w");
                 //FILE* f3 = fopen(("R_bern/A."+version+s_epoch).c_str(),"w");
                 for (int i=0; i<relation_num; i++)
                 {
