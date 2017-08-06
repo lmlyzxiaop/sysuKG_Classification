@@ -59,8 +59,8 @@ map<int,string> id2entity,id2relation;
 map<int,map<int,int> > left_entity,right_entity;
 map<int,double> left_num,right_num;
 
-string data = "WN11"
-string path = ("../"+data).c_str();
+string data ;
+string path ;
 
 class Train{
 
@@ -339,10 +339,11 @@ int ArgPos(char *str, int argc, char **argv) {
 int main(int argc,char**argv)
 {
     srand((unsigned) time(NULL));
-    int method = 1;
+    int  method = 1;
     int n = 100;
     double rate = 0.001;
     double margin = 1;
+    int data_flag = 1;
     int i;
     if ((i = ArgPos((char *)"-size", argc, argv)) > 0) n = atoi(argv[i + 1]);
     if ((i = ArgPos((char *)"-margin", argc, argv)) > 0) margin = atoi(argv[i + 1]);
@@ -355,6 +356,13 @@ int main(int argc,char**argv)
     else
         version = "unif";
     cout<<"method = "<<version<<endl;
+    if(data_flag)
+        data = "WN11";
+    else 
+        data = "FB13";
+    cout<<"DataSet = "<<data<<endl;
+    path = ("../"+data).c_str();
+    cout<<"path = "<<path<<endl;
     prepare();
     train.run(n,rate,margin,method);
 }
