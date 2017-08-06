@@ -3,7 +3,24 @@ import theano
 import theano.tensor as T
 from dev_test import output_result
 
-entity2id_fid = open('../WN11/entity2id.txt')
+
+data_flag = 1
+method = 1
+
+if data_flag == 1:
+    data = "WN11_"
+else:
+    data = "FB13_"
+
+if method == 1:
+    version = "bern"
+else:
+    version = "unif"
+
+path = "../"+data+version
+
+
+entity2id_fid = open(path+'/entity2id.txt')
 entity2id = {}
 count = 0
 for e in entity2id_fid :
@@ -12,7 +29,7 @@ for e in entity2id_fid :
     count += 1
 entity2id_fid.close()
 
-relation2id_fid = open('../WN11/relation2id.txt')
+relation2id_fid = open(path+'/relation2id.txt')
 relation2id = {}
 count = 0
 for e in relation2id_fid :
@@ -23,7 +40,7 @@ relation2id_fid.close()
 
 
 
-dev_fid = open('../WN11/dev.txt')
+dev_fid = open(path+'/dev.txt')
 dev_data = dev_fid.readlines()
 dev_fid.close()
 dev_triples = []
@@ -44,7 +61,7 @@ for dev_t in dev_data:
 #print("hi watch this\n")    
 #print(dev_triples_idx)
 
-test_fid = open('../WN11/test.txt')
+test_fid = open(path+'test.txt')
 test_data = test_fid.readlines()
 test_fid.close()
 test_triples = []
@@ -108,9 +125,9 @@ score_f = score()
 for i in range(0,1000):
     
     print i
-    entity2vec = np.loadtxt('../WN11_unif/entity2vec.unif'+str(i))
-    relation2vec = np.loadtxt('../WN11_unif/relation2vec.unif'+str(i))
-    W_embed = np.loadtxt('../WN11_unif/A.unif'+str(i))#.reshape((n_relation+6,100))
+    entity2vec = np.loadtxt(path+'/entity2vec.'+version+str(i))
+    relation2vec = np.loadtxt(path+'/relation2vec.'+version+str(i))
+    W_embed = np.loadtxt(path+'/A.'+version+str(i))#.reshape((n_relation+6,100))
     #A_t = np.loadtxt('../TranSparse/A_t.bern'+str(i)).reshape((n_relation,20,20))
    
     dev_score = score_f(dev_triples_idx, entity2vec,  relation2vec,W_embed)
